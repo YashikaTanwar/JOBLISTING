@@ -1,8 +1,19 @@
+require("dotenv").config();
 const express=require('express');
+const { default: mongoose } = require('mongoose');
 const app=express();
 
 const host=process.env.HOST || "localhost";
 const port=process.env.PORT || 3000;
+
+// connecting database to express server
+mongoose.connect(process.env.MONGODB_URI)
+.then(()=>{
+    console.log("DB successfully connected");
+})
+.catch((error)=>{
+    console.log(error);
+});
 
 app.get("/health",(req,res)=>{
     res.json({serice:"Job Listing Backend",
