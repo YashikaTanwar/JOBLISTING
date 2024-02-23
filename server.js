@@ -10,6 +10,8 @@ const port=process.env.PORT || 3000;
 //app.use() tells the server that these are the routes
 app.use('/api/v1/auth',auth)
 
+// type of request which we will receive
+app.use(express.json());
 
 // connecting database to express server
 mongoose.connect(process.env.MONGODB_URI)
