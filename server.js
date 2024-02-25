@@ -23,8 +23,9 @@ mongoose.connect(process.env.MONGODB_URI)
 });
 
 app.get("/health",(req,res)=>{
-    res.json({serice:"Job Listing Backend",
-    active:true,
+    res.json({
+    service:"Job Listing Backend",
+    status:"true",
     time: new Date()
     });
 })

@@ -5,8 +5,8 @@ const bcrypt=require('bcrypt');
 
 router.post("/register",async(req,res)=>{
     try{
-        const {name,email,password}=req.body;
-        
+        const { name, email, password}=req.body;
+        console.log(name,password,email);
         // checking values if empty
         if(!name|| !email || !password)
         {
