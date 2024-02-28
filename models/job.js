@@ -15,6 +15,24 @@ const jobSchema=new mongoose.Schema({
     LogoUrl:{
         type:String,
         required:true,
-    }
-})
+    },
+    Salary:{
+        type:String,
+        required:true,
+    },
+    Location:{
+        type:String,
+        required:true,
+    },
+    Duration:{
+        type:String,
+        required:true,
+    },
+    LocationType:{
+        type:String,
+        required:true,
+    },
+},
+    {timestamps:{createdAt:"createdAt",updatedAt:"updatedAt"}},
+)
 module.exports=mongoose.model("job",jobSchema);

@@ -13,6 +13,8 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
     }
-});
+},
+{ timestamps: {createdAt:"createdAt" },updatedAt:"UpdatedAt" }
+);
 // exporting schema
 module.exports=mongoose.model("User",userSchema);
