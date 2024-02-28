@@ -1,9 +1,10 @@
 const express=require('express');
-const router=express.router();
+const router=express.Router();
 const Job=require('../models/job');
 
 router.post('/create',async(req,res)=>{
     try{
+        console.log("request body:",req.body);
         const{
             CompanyName,
             Title,
@@ -15,7 +16,6 @@ router.post('/create',async(req,res)=>{
             LocationType
         }=req.body;
         console.log(CompanyName,Title,Description,LogoUrl,Salary,Location,Duration,LocationType);
-        
         // checking if values are empty
         if(!CompanyName || !Title || !Description || !LogoUrl || !Salary || !Location || !Duration || !LocationType){
             return res.status(400).json
@@ -28,8 +28,24 @@ router.post('/create',async(req,res)=>{
             {
                 return res.status(409).json({errorMessage:"Job already Exists in DataBase"});
             }
+
+        // Object creation
+            const jobDetails=new jobDetails({
+            CompanyName,
+            Title,
+            Description,
+            LogoUrl,
+            Salary,
+            Location,
+            Duration,
+            LocationType
+        });
+
+        await jobDetails.save();
+        res.json({message:"Job created successfully"});
     }
     catch(error){
         console.log(error);
     }
 });
+module.exports=router;

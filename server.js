@@ -1,17 +1,20 @@
 require("dotenv").config();
 const express=require('express');
+const bodyParser=require('body-parser'); 
 const { default: mongoose } = require('mongoose');
-const auth=require('./routes/auth')
+const auth=require('./routes/auth');
+const job=require('./routes/job');
 const app=express();
 
 const host=process.env.HOST || "localhost";
 const port=process.env.PORT || 3000;
 
 //app.use() tells the server that these are the routes
-app.use('/api/v1/auth',auth)
+app.use('/api/v1/auth',auth);
+app.use('/api/v1/job',job);
 
 // type of request which we will receive
-app.use(express.json());
+app.use(bodyParser.json());
 
 // connecting database to express server
 mongoose.connect(process.env.MONGODB_URI)
