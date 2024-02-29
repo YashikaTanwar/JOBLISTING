@@ -1,3 +1,4 @@
+// dotenv is used to load values from .env file
 require("dotenv").config();
 const express=require('express'); 
 const { default: mongoose } = require('mongoose');

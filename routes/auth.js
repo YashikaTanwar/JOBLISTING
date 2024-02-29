@@ -7,6 +7,7 @@ router.use(express.json());
 
 router.post("/register",async(req,res)=>{
     try{
+        console.log("hello");
         const { name, email, password}=req.body;
         console.log(name,email,password);
         // checking values if empty

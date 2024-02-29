@@ -1,8 +1,8 @@
 const express=require('express');
 const router=express.Router();
 const Job=require('../models/job');
-
-router.post('/create',async(req,res)=>{
+const verifyToken=require('../middleware/authMiddleware');
+router.post('/create',verifyToken,async(req,res)=>{
     console.log('enter')
     try{
         console.log("request body:",req.body);
