@@ -3,6 +3,7 @@ const router=express.Router();
 const Job=require('../models/job');
 
 router.post('/create',async(req,res)=>{
+    console.log('enter')
     try{
         console.log("request body:",req.body);
         const{

@@ -1,6 +1,5 @@
 require("dotenv").config();
-const express=require('express');
-const bodyParser=require('body-parser'); 
+const express=require('express'); 
 const { default: mongoose } = require('mongoose');
 const auth=require('./routes/auth');
 const job=require('./routes/job');
@@ -14,7 +13,7 @@ app.use('/api/v1/auth',auth);
 app.use('/api/v1/job',job);
 
 // type of request which we will receive
-app.use(bodyParser.json());
+app.use(express.json());
 
 // connecting database to express server
 mongoose.connect(process.env.MONGODB_URI)
