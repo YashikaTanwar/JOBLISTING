@@ -6,6 +6,8 @@ router.post('/create',async(req,res)=>{
     console.log('enter')
     try{
         console.log("request body:",req.body);
+        
+        // fetching values and storing it in body 
         const{
             CompanyName,
             Title,
