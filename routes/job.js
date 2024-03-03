@@ -2,6 +2,8 @@ const express=require('express');
 const router=express.Router();
 const Job=require('../models/job');
 const verifyToken=require('../middleware/authMiddleware');
+
+// verifyToken is a middleware which we have created and here it is used for authentication
 router.post('/create',verifyToken,async(req,res)=>{
     console.log('enter')
     try{
