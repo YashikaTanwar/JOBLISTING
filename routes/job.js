@@ -9,7 +9,7 @@ router.post('/create',verifyToken,async(req,res)=>{
     try{
         console.log("request body:",req.body);
         
-        // fetching values and storing it in body 
+        // fetching values and storing it in body (database)
         const{
             CompanyName,
             Title,

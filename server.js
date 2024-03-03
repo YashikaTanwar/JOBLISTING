@@ -11,6 +11,8 @@ const port=process.env.PORT || 3000;
 
 //app.use() tells the server that these are the routes
 app.use('/api/v1/auth',auth);
+
+// if we'll add verifytoken API here then it will be restricted 
 app.use('/api/v1/job',job);
 
 // type of request which we will receive

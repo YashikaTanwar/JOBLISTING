@@ -72,7 +72,7 @@ router.post("/login",async(req,res)=>{
             {id:userDetails._id},
             process.env.SECRET_KEY);
 
-        // if everthing works fine then this message will get printed
+        // if everthing works fine then this message will get printed(Thunder Client/Postman)
         res.json({
             message:"User Logged In",
             name:userDetails.name,
