@@ -5,7 +5,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 router.use(express.json());
 
-router.post("/register",async(req,res)=>{
+router.post("/register",async(req,res,next)=>{
     try{
         console.log("hello");
         const { name, email, password}=req.body;
@@ -38,7 +38,7 @@ router.post("/register",async(req,res)=>{
     }
 
     catch(error){
-        console.log(error);
+        next(error);
     }
     console.log("Inside register");
 });
@@ -80,7 +80,7 @@ router.post("/login",async(req,res)=>{
         });
     }
     catch(error){
-        console.log(error);
+        next(error);
     }
 });
 module.exports=router;
