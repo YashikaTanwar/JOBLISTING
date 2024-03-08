@@ -21,7 +21,7 @@ app.use('/api/v1/job',job);
 
 // this message will only get printed when it will not be able to find the designated route 
 app.use('/*',(req,res)=>{
-    app.status().json({errorMessage:"Route not found"});
+    res.status(404).json({errorMessage:"Route not found"});
 })
 
 // middleware to handle errors

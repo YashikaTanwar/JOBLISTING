@@ -50,4 +50,22 @@ router.post('/create',verifyToken,async(req,res,next)=>{
         next(error);
     }
 });
+
+//:jobId --> parameter
+router.get('/details:jobId',async(req,res,next)=>{
+    try{
+        const jobId=req.params.jobId;
+        if(!jobId)
+        {
+            return req.status(400).json({message:"Bad request"});
+        }
+        const jobDetails=await Job.findById(jobId);
+        res.json({data:jobDetails});
+    }
+    catch(error)
+    {
+        next(error);
+    }
+});
+
 module.exports=router;
