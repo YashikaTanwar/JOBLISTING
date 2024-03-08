@@ -7,12 +7,12 @@ const verifyToken=(req,res,next)=>{
 
         // token <- userID
         // this block checks if token exists if not then an error will be generated
-        if(!token)
+        if(!token && length<2)
         {
             res.status(401).json({message:"Unauthorized access"});
         }
         // for token verification
-        const decode=jwt.verify(token,process.env.SECRET_KEY);
+        const decode=jwt.verify(token[1],process.env.SECRET_KEY);
         next();
     }
     // if token doesn't match then it simply prints error block
