@@ -68,6 +68,7 @@ router.post("/login",async(req,res)=>{
             return res.status(401).json({errorMessage:"Invalid User Credentials"});
         }
 
+        // token creation
         const token=jwt.sign(
             {id:userDetails._id},
             process.env.SECRET_KEY);
