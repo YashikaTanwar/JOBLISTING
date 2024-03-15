@@ -4,9 +4,10 @@ const Job=require('../models/job');
 const verifyToken=require('../middleware/authMiddleware');
 
 // verifyToken is a middleware which we have created and here it is used for authentication
+// allows to create job post in DB
 router.post('/create',verifyToken,async(req,res,next)=>{
     try{        
-        // fetching values and storing it in body (database)
+        // fetching values (from req.body) and storing it in body (database)
         const{
             CompanyName,
             Title,
@@ -19,7 +20,9 @@ router.post('/create',verifyToken,async(req,res,next)=>{
         }=req.body;
         console.log(CompanyName,Title,Description,LogoUrl,Salary,Location,Duration,LocationType);
 
-        // checking if values are empty
+        // checking if all values are present
+        // here we are handling all the errors manually but we can also use a third party package
+        // YUP / JOI
         if(!CompanyName || !Title || !Description || !LogoUrl || !Salary || !Location || !Duration || !LocationType){
             return res.status(400).json({errorMessage:"Bad request"});
         }
@@ -59,6 +62,7 @@ router.get('/details:jobId',async(req,res,next)=>{
         {
             return req.status(400).json({message:"Bad request"});
         }
+        // finds job using jobID
         const jobDetails=await Job.findById(jobId);
         res.json({data:jobDetails});
     }
