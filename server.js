@@ -16,7 +16,7 @@ app.use(express.json());
 //app.use() tells the server that these are the routes
 app.use('/api/v1/auth',auth);
 
-// if we'll add verifytoken API here then it will be restricted 
+// if we'll add verifytoken API here then the job page will also get restricted -> as the user need to provide login credentials even if they are not registered  
 app.use('/api/v1/job',job);
 
 // this message will only get printed when it will not be able to find the designated route 

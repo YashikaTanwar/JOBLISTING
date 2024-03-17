@@ -3,12 +3,12 @@
 const jwt=require('jsonwebtoken');
 const verifyToken=(req,res,next)=>{
     try{
-        // authorization is a value which is defined under 'Headers' and from there we are fetching token value   
+        // authorization is a value which is defined under 'Headers' and from there we are fetching/extracting token    
         const token=req.header("Authorization");
 
         // token <- userID
-        // this block checks if token exists if not then an error will be generated
-        if(!token && length<2)
+        // trying to access the system without token
+        if(!token)
         {
             // error 401 -> invalid token
             res.status(401).json({message:"Unauthorized access"});
