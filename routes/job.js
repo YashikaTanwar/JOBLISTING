@@ -1,3 +1,4 @@
+// we created a middleware for authentication purpose because we were able to create a job even without logging  
 const express=require('express');
 const router=express.Router();
 const Job=require('../models/job');
@@ -27,6 +28,11 @@ router.post('/create',verifyToken,async(req,res,next)=>{
             return res.status(400).json({errorMessage:"Bad request"});
         }
 
+        // error range-> (200-500)
+        // error 404-> not found
+        // error 400-> bad request
+        // error 500-> any error which occurs other than backend error
+
         // checking if Job already exists in Db
         const isExtistingJob=await Job.findOne({Title:Title, CompanyName:CompanyName, Description:Description, Salary:Salary, Location:Location})
             if(isExtistingJob)
@@ -46,6 +52,8 @@ router.post('/create',verifyToken,async(req,res,next)=>{
             LocationType
         });
 
+        //saving values into database
+        // jobDetails <- object name    
         await jobDetails.save();
         res.json({message:"Job created successfully"});
     }

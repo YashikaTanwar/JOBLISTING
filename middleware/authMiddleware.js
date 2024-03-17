@@ -1,3 +1,4 @@
+// middleware is used for authentication purpose
 // used for verifying tokens
 const jwt=require('jsonwebtoken');
 const verifyToken=(req,res,next)=>{
@@ -9,6 +10,7 @@ const verifyToken=(req,res,next)=>{
         // this block checks if token exists if not then an error will be generated
         if(!token && length<2)
         {
+            // error 401 -> invalid token
             res.status(401).json({message:"Unauthorized access"});
         }
         // for token verification
