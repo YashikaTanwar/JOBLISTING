@@ -41,7 +41,7 @@ router.post('/create',verifyToken,async(req,res,next)=>{
             }
 
         // Object creation
-            const jobDetails=new jobDetails({
+            const jobDetails=new Job({
             CompanyName,
             Title,
             Description,
