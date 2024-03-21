@@ -63,7 +63,7 @@ router.post('/create',verifyToken,async(req,res,next)=>{
 });
 
 //:jobId --> parameter
-router.get('/details:jobId',async(req,res,next)=>{
+router.get('/details/:jobId',async(req,res,next)=>{
     try{
         const jobId=req.params.jobId;
         if(!jobId)
@@ -80,4 +80,15 @@ router.get('/details:jobId',async(req,res,next)=>{
     }
 });
 
+
+// we use put when we want to update values
+router.put('/edit/:jobId',(req,res)=>{
+    try{
+
+    }
+    catch(error)
+    {
+
+    }
+});
 module.exports=router;
