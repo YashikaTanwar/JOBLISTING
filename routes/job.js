@@ -81,7 +81,7 @@ router.get('/details/:jobId',async(req,res,next)=>{
 });
 
 
-// we use put when we want to update values
+// we use put when we want to update values / when we have updated as well as old values
 router.put('/edit/:jobId',(req,res)=>{
     try{
 
