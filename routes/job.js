@@ -82,9 +82,10 @@ router.get('/details/:jobId',async(req,res,next)=>{
 
 
 // we use put when we want to update values / when we have updated as well as old values
+// we use patch when we only want to update a single value example:- like/unlike
 router.put('/edit/:jobId',(req,res)=>{
     try{
-
+ 
     }
     catch(error)
     {
