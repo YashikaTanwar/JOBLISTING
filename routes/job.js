@@ -88,6 +88,11 @@ router.get('/details/:jobId',async(req,res,next)=>{
 // we use patch when we only want to update a single value example:- like/unlike
 router.put('/edit/:jobId',async(req,res,next)=>{
     try{    
+            const jobId=req.params.jobId;
+            if(!jobId)
+            {
+                return req.status(400).json({message:"Bad request"});
+            }
             // fetching values (from req.body) and storing it in body (database)
             const{
                 CompanyName,
