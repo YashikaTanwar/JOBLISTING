@@ -87,32 +87,43 @@ router.get('/details/:jobId',async(req,res,next)=>{
 // we use put when we want to update values / when we have updated as well as old values
 // we use patch when we only want to update a single value example:- like/unlike
 router.put('/edit/:jobId',async(req,res,next)=>{
-    try{        
-        // fetching values (from req.body) and storing it in body (database)
-        const{
-            CompanyName,
-            Title,
-            Description,
-            LogoUrl,
-            Salary,
-            Location,
-            Duration,
-            LocationType
-        }=req.body;
-        console.log(CompanyName,Title,Description,LogoUrl,Salary,Location,Duration,LocationType);
+    try{    
+            // fetching values (from req.body) and storing it in body (database)
+            const{
+                CompanyName,
+                Title,
+                Description,
+                LogoUrl,
+                Salary,
+                Location,
+                Duration,
+                LocationType
+            }=req.body;
+    
+            // checking if all values are present
+            // here we are handling all the errors manually but we can also use a third party package
+            // YUP / JOI
+            if(!CompanyName || !Title || !Description || !LogoUrl || !Salary || !Location || !Duration || !LocationType){
+                return res.status(400).json({errorMessage:"Bad request"});
+            }
 
-        // checking if all values are present
-        // here we are handling all the errors manually but we can also use a third party package
-        // YUP / JOI
-        if(!CompanyName || !Title || !Description || !LogoUrl || !Salary || !Location || !Duration || !LocationType){
-            return res.status(400).json({errorMessage:"Bad request"});
-        }
-    try{
-        const reqPayload=req.body;
         await Job.updateOne(
+            // this is a filter that is on the basis of which condition we want to update the values.
             {_id:jobId},
-            // ... is a spread operator which copies all the properties of reqPayload into new object
-            {$set:{...reqPayload,},}
+            // $set is used to specify which values we need to update i.e. it targets specific fields 
+            // all the possible values which we want to update. 
+            {
+                $set:{
+                    CompanyName,
+                    Title,
+                    Description,
+                    LogoUrl,
+                    Salary,
+                    Location,
+                    Duration,
+                    LocationType
+                },
+            }
             );
             res.json({message:"Job details updated successfully"});
     }
