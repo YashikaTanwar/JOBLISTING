@@ -10,7 +10,7 @@ const verifyToken=require('../middleware/authMiddleware');
 // allows to create job post in DB
 router.post('/create',verifyToken,async(req,res,next)=>{
     try{        
-        // fetching values (from req.body) and storing it in body (database)
+        // extracting data which is sent by client (from req.body)  
         const{
             CompanyName,
             Title,
@@ -42,7 +42,7 @@ router.post('/create',verifyToken,async(req,res,next)=>{
                 return res.status(409).json({errorMessage:"Job already Exists in DataBase"});
             }
 
-        // Object creation
+        // Object creation to save values in database
             const jobDetails=new Job({
             CompanyName,
             Title,
